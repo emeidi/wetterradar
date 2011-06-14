@@ -59,7 +59,7 @@ MP4MOVIE="$DATADIR/iphone/$DATUM.mp4"
 $AVI2MP4 "$AVIMOVIE" "$MP4MOVIE" 2>/dev/null
 
 # Debug
-#/usr/local/bin/avi2mp4.sh "$AVIMOVIE" "$MP4MOVIE"
+#$AVI2MP4 "$AVIMOVIE" "$MP4MOVIE"
 
 if [ ! -f "$MP4MOVIE" ];
 then
