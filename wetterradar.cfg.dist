@@ -1,0 +1,8 @@
+JPEGQUALITY=50
+
+FRAMERATE=20
+AVI2MP4="avi2mp4.sh"
+
+DATUM=`date +%Y-%m-%d`
+UHRZEIT=`date +%H-%M`
+DATADIR="/var/www/apps/radar/data/$DATUM/"
