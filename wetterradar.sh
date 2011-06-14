@@ -1,18 +1,17 @@
 #!/bin/sh
 
 CONVERT=`which convert`
-#QUALITY=85
-QUALITY=50
-
 MENCODER=`which mencoder`
-FRAMERATE=20
 
-AVI2MP4="avi2mp4.sh"
+CONFIG="./wetterradar.cfg"
+if [ ! -f $CONFIG ]
+then
+	echo "Config file '$CONFIG' missing"
+	exit 1
+fi
 
-DATUM=`date +%Y-%m-%d`
-UHRZEIT=`date +%H-%M`
-#DATADIR="/multimedia/Swap/Radar/$DATUM/"
-DATADIR="/var/www/apps/radar/data/$DATUM/"
+# Import configuration settings like storage path etc.
+source $CONFIG
 
 if [ ! -d $DATADIR ]
 then
@@ -37,7 +36,7 @@ then
 fi
 
 # Convert to JPEG
-$CONVERT -quality $QUALITY "$IMG" "$DATADIR$UHRZEIT.jpg"
+$CONVERT -quality $JPEGQUALITY "$IMG" "$DATADIR$UHRZEIT.jpg"
 $CONVERT -quality 5 -rotate 90 "$IMG" "$DATADIR/iphone/$UHRZEIT.jpg"
 
 # Create Movie
