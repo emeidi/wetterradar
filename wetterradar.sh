@@ -4,7 +4,9 @@ CONVERT=`which convert`
 MENCODER=`which mencoder`
 WGET=`which wget`
 
-CONFIG="./wetterradar.cfg"
+SCRIPTROOT=`dirname $0`
+
+CONFIG="$SCRIPTROOT/wetterradar.cfg"
 if [ ! -f "$CONFIG" ]
 then
 	echo "Config file '$CONFIG' missing"
@@ -23,8 +25,6 @@ if [ ! -d "$DATADIR/iphone" ]
 then
 	mkdir -p "$DATADIR/iphone"
 fi
-
-#wget -T 5 --referer "http://www.nzz.ch/wetter/radar_grossbild_aktuell.html" -U "Mozilla/5.001 (windows; U; NT4.0; en-us) Gecko/25250101" -q -O "$DATADIR$UHRZEIT.gif" http://www.nzz.ch/images/radar_gross_1.168.
 
 IMG="$DATADIR$UHRZEIT.gif"
 

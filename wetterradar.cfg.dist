@@ -1,7 +1,7 @@
 JPEGQUALITY=50
 
 FRAMERATE=20
-AVI2MP4="avi2mp4.sh"
+AVI2MP4="$SCRIPTROOT/avi2mp4.sh"
 
 DATUM=`date +%Y-%m-%d`
 UHRZEIT=`date +%H-%M`
