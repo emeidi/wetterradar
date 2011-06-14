@@ -7,6 +7,8 @@ QUALITY=50
 MENCODER=`which mencoder`
 FRAMERATE=20
 
+AVI2MP4="avi2mp4.sh"
+
 DATUM=`date +%Y-%m-%d`
 UHRZEIT=`date +%H-%M`
 #DATADIR="/multimedia/Swap/Radar/$DATUM/"
@@ -54,7 +56,7 @@ then
 fi
 
 MP4MOVIE="$DATADIR/iphone/$DATUM.mp4"
-/usr/local/bin/avi2mp4.sh "$AVIMOVIE" "$MP4MOVIE" 2>/dev/null
+$AVI2MP4 "$AVIMOVIE" "$MP4MOVIE" 2>/dev/null
 
 # Debug
 #/usr/local/bin/avi2mp4.sh "$AVIMOVIE" "$MP4MOVIE"
