@@ -14,6 +14,8 @@ You can adjust the storage location of the images and the movies in the script i
 
 crontab
 -------
+```
 ...
 */10 * * * *    /usr/local/bin/wetterradar/wetterradar.sh
 ...
+```
