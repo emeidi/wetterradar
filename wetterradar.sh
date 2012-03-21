@@ -37,8 +37,8 @@ then
 fi
 
 # Convert to JPEG
-$CONVERT -silent -quality $JPEGQUALITY "$IMG" "$DATADIR$UHRZEIT.jpg"
-$CONVERT -silent -quality 5 -rotate 90 "$IMG" "$DATADIR/iphone/$UHRZEIT.jpg"
+$CONVERT -quiet -quality $JPEGQUALITY "$IMG" "$DATADIR$UHRZEIT.jpg"
+$CONVERT -quiet -quality 5 -rotate 90 "$IMG" "$DATADIR/iphone/$UHRZEIT.jpg"
 
 # Create Movie
 cd "$DATADIR"
