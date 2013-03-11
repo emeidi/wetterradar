@@ -26,9 +26,9 @@ then
 	mkdir -p "$DATADIR/iphone"
 fi
 
-IMG="$DATADIR$UHRZEIT.gif"
+IMG="$DATADIR$UHRZEIT.jpg"
 
-$WGET -T 5 --referer "http://www.meteoschweiz.admin.ch/web/de/wetter/aktuelles_wetter/radarbild.html" -U "Mozilla/5.001 (windows; U; NT4.0; en-us) Gecko/25250101" -q -O "$IMG" http://www.meteoschweiz.admin.ch/web/de/wetter/aktuelles_wetter/radarbild.Par.0005.Data.img_1.gif
+$WGET -T 5 --referer "http://www.meteoschweiz.admin.ch/web/de/wetter/aktuelles_wetter/radarbild.html" -U "Mozilla/5.001 (windows; U; NT4.0; en-us) Gecko/25250101" -q -O "$IMG" http://www.meteoschweiz.admin.ch/web/de/wetter/aktuelles_wetter/radarbild.Par.0005.ImageData.img_1.jpg
 
 if [ ! -f "$IMG" ];
 then
@@ -36,8 +36,17 @@ then
 	exit 1
 fi
 
+SIZE=`du "$IMG" | awk '{print $1}'`
+if [ $SIZE == 0 ];
+then
+	echo "File $IMG is empty. Deleting it to avoid ImageMagick errors."
+	rm -f "$IMG"
+	exit 1
+fi
+
 # Convert to JPEG
-$CONVERT -quiet -quality $JPEGQUALITY "$IMG" "$DATADIR$UHRZEIT.jpg"
+# Not necessary because server now serves JPEG (ca. 2013-01)
+#$CONVERT -quiet -quality $JPEGQUALITY "$IMG" "$DATADIR$UHRZEIT.jpg"
 $CONVERT -quiet -quality 5 -rotate 90 "$IMG" "$DATADIR/iphone/$UHRZEIT.jpg"
 
 # Create Movie
