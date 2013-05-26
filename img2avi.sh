@@ -6,7 +6,7 @@ then
 	exit 1
 fi
 
-# Default settings are used when no configuration file is presen
+# Default settings are used when no configuration file is present
 MENCODER=`which mencoder`
 IMAGEEXTENSION="jpg"
 FRAMERATE=20
@@ -52,7 +52,7 @@ then
 	echo "Using custom set video name '$AVIMOVIE'"
 fi
 
-echo "Encoding all JPEG files present in directory '$WORKINGDIR' into an avi movie"
+echo "Encoding all *.$IMAGEEXTENSION files present in directory '$WORKINGDIR' into an avi movie"
 $MENCODER "mf://*.$IMAGEEXTENSION" -really-quiet -mf fps=$FRAMERATE -o "$AVIMOVIE" -ovc lavc -lavcopts vcodec=$VCODEC:vbitrate=$VBITRATE 2>/dev/null
 
 exit 0
