@@ -7,6 +7,7 @@ then
 fi
 
 # Default settings are used when no configuration file is present
+DEBUG=0
 MENCODER=`which mencoder`
 IMAGEEXTENSION="jpg"
 FRAMERATE=20
@@ -17,14 +18,14 @@ AVIMOVIE="movie.avi"
 if [ $# -eq 2 ]
 then
 	AVIMOVIE="$2.avi"
-	echo "Using custom set video name '$AVIMOVIE'"
+	[ $DEBUG -eq 1 ] && echo "Using custom set video name '$AVIMOVIE'"
 fi
 
 SCRIPTROOT=`dirname $0`
 CONFIG="$SCRIPTROOT/wetterradar.cfg"
 if [ -f "$CONFIG" ]
 then
-	echo "Sourcing configuration from '$CONFIG'"
+	[ $DEBUG -eq 1 ] && echo "Sourcing configuration from '$CONFIG'"
 	source $CONFIG
 fi
 
@@ -42,17 +43,10 @@ then
 	exit 1
 fi
 
-echo "Switching to directory '$WORKINGDIR'"
+[ $DEBUG -eq 1 ] && echo "Switching to directory '$WORKINGDIR'"
 cd "$WORKINGDIR"
 
-AVIMOVIE="movie.avi"
-if [ $# -eq 2 ]
-then
-	AVIMOVIE="$2.avi"
-	echo "Using custom set video name '$AVIMOVIE'"
-fi
-
-echo "Encoding all *.$IMAGEEXTENSION files present in directory '$WORKINGDIR' into an avi movie"
+[ $DEBUG -eq 1 ] && echo "Encoding all *.$IMAGEEXTENSION files present in directory '$WORKINGDIR' into an avi movie"
 $MENCODER "mf://*.$IMAGEEXTENSION" -really-quiet -mf fps=$FRAMERATE -o "$AVIMOVIE" -ovc lavc -lavcopts vcodec=$VCODEC:vbitrate=$VBITRATE 2>/dev/null
 
 exit 0
