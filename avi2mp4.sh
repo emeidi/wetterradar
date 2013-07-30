@@ -9,6 +9,6 @@ FFMPEG=`which ffmpeg`
 #$FFMPEG -flags +loop -y -i "$1" -b 200000 -s 320x240 -vcodec mpeg4 -vtag xvid -an -f mp4 "$2"
 #$FFMPEG -flags +loop -y -i "$1" -b 200000 -s 320x240 -vcodec mpeg4 -an -f mp4 "$2"
 #$FFMPEG -flags +loop -y -i "$1" -b 200000 -s 640x480 -vcodec libx264 -an -f mp4 "$2"
-$FFMPEG -i "$1" -vcodec libx264 -b 2000000 -preset slow "$2"
+$FFMPEG -y -i "$1" -vf "crop=((in_w/2)*2):((in_h/2)*2)" -vcodec libx264 -b 2000000 -preset slow "$2"
 
 exit 0
